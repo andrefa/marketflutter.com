@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${database.url}
+    username: ${database.username}
+    password: ${database.password}
+  jpa:
+    open-in-view: false
+  flyway:
+    url: ${database.url}
+    user: ${database.username}
+    password: ${database.password}
+
+notification:
+  url: https://ntfy.sh/

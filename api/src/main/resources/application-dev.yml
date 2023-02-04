@@ -1,0 +1,9 @@
+database:
+  url: jdbc:mysql://localhost:33060/market_flutter?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+  username: root
+  password: super-senha
+
+binance:
+  url:
+    api: https://testnet.binance.vision
+    websocket: wss://testnet.binance.vision
