@@ -16,7 +16,7 @@ public class BinanceConfig {
 
     @Bean
     public SpotClient unauthenticatedBinanceClient(@Value("${binance.url.api}") String apiUrl) {
-        return  new SpotClientImpl(apiUrl);
+        return new SpotClientImpl(apiUrl);
     }
 
     @Bean
@@ -28,5 +28,5 @@ public class BinanceConfig {
     public WebsocketClient binanceWebsocketClient(@Value("${binance.url.websocket}") String apiUrl) {
         return new WebsocketClientImpl(apiUrl);
     }
-    
+
 }

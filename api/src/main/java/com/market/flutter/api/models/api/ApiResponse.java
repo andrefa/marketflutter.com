@@ -8,9 +8,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class ApiResponse<T> {
-    
+
     private boolean success;
     private String error;
     private T data;
-    
+
 }

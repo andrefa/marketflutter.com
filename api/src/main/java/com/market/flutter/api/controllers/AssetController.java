@@ -40,5 +40,5 @@ public class AssetController extends BaseController {
     // public void deleteAsset(@PathVariable String id) {
     //     assetService.deleteAsset(id);
     // }
-    
+
 }

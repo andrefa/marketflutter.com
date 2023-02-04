@@ -21,13 +21,13 @@ public class BinancePricesListener {
     private final WebsocketClient binanceWebsocketClient;
 
     private final AssetRepository assetRepository;
-    
+
     @PostConstruct
     public void init() {
         List<String> tradedAssets = assetRepository.tradedAssets()
-            .stream()
-            .map(ass -> ass + "@trade")
-            .toList();
+                .stream()
+                .map(ass -> ass + "@trade")
+                .toList();
 
         log.debug("Connecting to trade streams '{}'.", tradedAssets);
         binanceWebsocketClient.combineStreams(new ArrayList<>(tradedAssets), this::onReceive);
@@ -39,8 +39,8 @@ public class BinancePricesListener {
         binanceWebsocketClient.closeAllConnections();
     }
 
-   private void onReceive(String data) {
+    private void onReceive(String data) {
         log.debug("BinancePricesListener.onReceive() {}", data);
-   }
+    }
 
 }

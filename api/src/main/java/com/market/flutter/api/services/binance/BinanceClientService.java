@@ -21,9 +21,9 @@ public class BinanceClientService {
         String result = unauthenticatedBinanceClient.createMarket().exchangeInfo(new LinkedHashMap<>());
         System.out.println(result);
 
-        LinkedHashMap<String,Object> parameters = new LinkedHashMap<String,Object>();
+        LinkedHashMap<String, Object> parameters = new LinkedHashMap<String, Object>();
 
-        parameters.put("symbol","BTCUSDT");
+        parameters.put("symbol", "BTCUSDT");
         parameters.put("side", "SELL");
         parameters.put("type", "LIMIT");
         parameters.put("timeInForce", "GTC");
@@ -35,5 +35,5 @@ public class BinanceClientService {
 
         System.out.println(result2);
     }
-    
+
 }

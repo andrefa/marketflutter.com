@@ -48,10 +48,10 @@ public class NotificationService {
 
             try (Response response = okHttp.newCall(request).execute()) {
                 if (!response.isSuccessful()) {
-                    log.debug("Failed to notify '{}' message to topic '{}'. Status code {}.", 
-                        message, 
-                        user.getUserConfig().getNtfyTopicName(),
-                        response.code());
+                    log.debug("Failed to notify '{}' message to topic '{}'. Status code {}.",
+                            message,
+                            user.getUserConfig().getNtfyTopicName(),
+                            response.code());
                 }
 
                 NtfyResponse ntfyResponse = objectMapper.readValue(response.body().byteStream(), NtfyResponse.class);
@@ -59,14 +59,15 @@ public class NotificationService {
                 log.debug("Response received '{}' for url '{}'", ntfyResponse, url);
             }
         } catch (IOException e) {
-            log.debug("Excpetion to notify '{}' message to topic '{}. Error '{}'.", 
-                        message, 
-                        user.getUserConfig().getNtfyTopicName(),
-                        e.getMessage());
+            log.debug("Excpetion to notify '{}' message to topic '{}. Error '{}'.",
+                    message,
+                    user.getUserConfig().getNtfyTopicName(),
+                    e.getMessage());
         }
     }
-    
+
 }
+
 
 record NtfyResponse(String id, long time, String event, String topic, String message) {
 }

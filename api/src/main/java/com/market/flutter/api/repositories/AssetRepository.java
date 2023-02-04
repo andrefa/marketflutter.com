@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.market.flutter.api.models.domain.Asset;
 
-public interface AssetRepository extends JpaRepository<Asset, Long>{
-    
+public interface AssetRepository extends JpaRepository<Asset, Long> {
+
     @Query(" SELECT distinct ass.cryptoName FROM Asset ass ")
     List<String> tradedAssets();
 

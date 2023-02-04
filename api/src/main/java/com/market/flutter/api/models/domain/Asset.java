@@ -8,7 +8,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,14 +19,15 @@ public class Asset extends BaseEntity {
 
     @OneToOne(optional = false)
     private AssetConfig assetConfig;
-    
+
     @ManyToOne(optional = false)
     private User user;
-    
-    @Column(name = "crypto_name", nullable = false)
+
+    @Column(name = "crypto_name",
+            nullable = false)
     private String cryptoName;
 
     @OneToMany
     private List<AssetTransaction> assetTransactions;
-    
+
 }

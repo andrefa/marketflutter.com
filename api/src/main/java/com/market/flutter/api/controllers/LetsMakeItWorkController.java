@@ -13,18 +13,17 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 public class LetsMakeItWorkController extends BaseController {
-    
+
     private UserRepository userRepository;
     private NotificationService notificationService;
 
     @GetMapping("test/notify")
     public List<Object> getAllAssets() {
-        
         userRepository.findAll().forEach(user -> {
             notificationService.notifyUser(user, "test");
         });
 
         return List.of();
     }
-    
+
 }

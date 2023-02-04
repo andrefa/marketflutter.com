@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,22 +16,27 @@ import lombok.Setter;
 @Table(name = "users")
 public class User extends BaseEntity {
 
-  @Column(name = "first_name", nullable = false)
-  private String firstName;
+    @Column(name = "first_name",
+            nullable = false)
+    private String firstName;
 
-  @Column(name = "last_name", nullable = false)
-  private String lastName;
+    @Column(name = "last_name",
+            nullable = false)
+    private String lastName;
 
-  @Column(name = "email", nullable = false, unique = true)
-  private String email;
+    @Column(name = "email",
+            nullable = false,
+            unique = true)
+    private String email;
 
-  @Column(name = "password", nullable = false)
-  private String password;
+    @Column(name = "password",
+            nullable = false)
+    private String password;
 
-  @OneToOne(mappedBy = "user")
-  private UserConfig userConfig;
+    @OneToOne(mappedBy = "user")
+    private UserConfig userConfig;
 
-  @OneToMany
-  private List<Asset> assets;
-    
+    @OneToMany
+    private List<Asset> assets;
+
 }

@@ -10,7 +10,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,17 +19,22 @@ import lombok.Setter;
 @Table(name = "asset_transactions")
 public class AssetTransaction extends BaseEntity {
 
-    @ManyToOne(optional = false, targetEntity = Asset.class, cascade = {CascadeType.DETACH})
+    @ManyToOne(optional = false,
+            targetEntity = Asset.class,
+            cascade = {CascadeType.DETACH})
     private Asset asset;
 
-    @Column(name = "transaction_type", nullable = false)
+    @Column(name = "transaction_type",
+            nullable = false)
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
-    @Column(name = "purchase_price", nullable = false)
+    @Column(name = "purchase_price",
+            nullable = false)
     private BigDecimal purchasePrice;
 
-    @Column(name = "amount", nullable = false)
+    @Column(name = "amount",
+            nullable = false)
     private BigDecimal amount;
 
     @OneToOne(optional = true)
