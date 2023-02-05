@@ -15,4 +15,4 @@ notification:
   url: https://ntfy.sh/
 
 jwt:
-  secret: it-is-what-it-is
+  secret: ${jwt.encryption.key}

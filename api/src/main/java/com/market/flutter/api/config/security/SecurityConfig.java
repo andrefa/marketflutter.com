@@ -13,13 +13,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class SecurityConfig {
-    @Autowired
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http,
+                                           JwtRequestFilter jwtRequestFilter,
+                                           JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) throws Exception {
         // We don't need CSRF for this example
         http.csrf().disable()
                 // dont authenticate this particular request
