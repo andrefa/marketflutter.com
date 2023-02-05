@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.market.flutter.api.models.api.ApiResponse;
+import com.market.flutter.api.models.dto.ApiResponse;
 
 @RestController
 public class FallbackController {

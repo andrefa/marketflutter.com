@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.market.flutter.api.models.api.binance.ExchangeInfo;
+import com.market.flutter.api.models.dto.ApiResponse;
+import com.market.flutter.api.models.dto.AvailableAsset;
 import com.market.flutter.api.services.binance.BinanceClientService;
 
 import lombok.AllArgsConstructor;
@@ -15,30 +18,19 @@ public class AssetController extends BaseController {
 
     private BinanceClientService binanceClientService;
 
-    @GetMapping("assets/list")
-    public List<Object> getAllAssets() {
-        binanceClientService.test();
-        return List.of();
+    @GetMapping("assets/available")
+    public ApiResponse<List<AvailableAsset>> getAllAssets() {
+        ExchangeInfo info = binanceClientService.fetchExchangeInfo();
+
+        List<AvailableAsset> availableAssets = info.symbols().stream().map(s -> AvailableAsset.builder()
+                .symbol(s.symbol())
+                .status(s.status())
+                .baseAsset(s.baseAsset())
+                .quoteAsset(s.quoteAsset())
+                .build())
+                .toList();
+
+        return success(availableAssets);
     }
-
-    // @GetMapping("/assets/{id}")
-    // public Asset getAsset(@PathVariable String id) {
-    //     return assetService.getAsset(id);
-    // }
-
-    // @PostMapping("/assets")
-    // public void addAsset(@RequestBody Asset asset) {
-    //     assetService.addAsset(asset);
-    // }
-
-    // @PutMapping("/assets/{id}")
-    // public void updateAsset(@RequestBody Asset asset, @PathVariable String id) {
-    //     assetService.updateAsset(id, asset);
-    // }
-
-    // @DeleteMapping("/assets/{id}")
-    // public void deleteAsset(@PathVariable String id) {
-    //     assetService.deleteAsset(id);
-    // }
 
 }

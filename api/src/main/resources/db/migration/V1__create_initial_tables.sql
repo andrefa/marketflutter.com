@@ -41,6 +41,7 @@ CREATE TABLE assets
     user_id BIGINT NOT NULL,
     asset_config_id BIGINT NOT NULL,
     crypto_name VARCHAR(255) NOT NULL,
+    default_asset TINYINT NOT NULL DEFAULT 0,
     create_date DATETIME default CURRENT_TIMESTAMP null,
     update_date DATETIME default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
     UNIQUE KEY `uk_assets_crypto_name` (`crypto_name`),

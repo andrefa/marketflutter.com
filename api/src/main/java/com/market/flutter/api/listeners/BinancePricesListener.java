@@ -1,6 +1,5 @@
 package com.market.flutter.api.listeners;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -41,7 +40,7 @@ public class BinancePricesListener {
                 .toList();
 
         log.info("Connecting to trade streams '{}'.", tradedAssets);
-        binanceWebsocketClient.combineStreams(new ArrayList<>(tradedAssets), this::onReceive);
+        //binanceWebsocketClient.combineStreams(new ArrayList<>(tradedAssets), this::onReceive);
     }
 
     @PreDestroy

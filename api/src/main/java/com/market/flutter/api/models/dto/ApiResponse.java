@@ -1,4 +1,4 @@
-package com.market.flutter.api.models.api;
+package com.market.flutter.api.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

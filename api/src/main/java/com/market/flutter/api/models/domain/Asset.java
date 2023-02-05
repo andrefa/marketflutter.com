@@ -27,6 +27,9 @@ public class Asset extends BaseEntity {
             nullable = false)
     private String cryptoName;
 
+    @Column(name = "default_asset")
+    private Boolean defaultAsset;
+
     @OneToMany
     private List<AssetTransaction> assetTransactions;
 
