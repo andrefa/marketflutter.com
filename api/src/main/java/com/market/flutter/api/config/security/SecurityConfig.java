@@ -16,8 +16,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http,
-                                           JwtRequestFilter jwtRequestFilter,
-                                           JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) throws Exception {
+            JwtRequestFilter jwtRequestFilter,
+            JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) throws Exception {
         // We don't need CSRF for this example
         http.csrf().disable()
                 // dont authenticate this particular request
