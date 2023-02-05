@@ -6,9 +6,13 @@ import java.util.function.BiFunction;
 import org.springframework.stereotype.Service;
 
 import com.binance.connector.client.SpotClient;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.market.flutter.api.models.api.binance.ExchangeInfo;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class BinanceClientService {
@@ -17,10 +21,20 @@ public class BinanceClientService {
 
     private final BiFunction<String, String, SpotClient> authenticatedBinanceClientFactory;
 
-    public void test() {
-        String result = unauthenticatedBinanceClient.createMarket().exchangeInfo(new LinkedHashMap<>());
-        System.out.println(result);
+    private ObjectMapper objectMapper;
 
+    public ExchangeInfo fetchExchangeInfo() {
+        try {
+            String result = unauthenticatedBinanceClient.createMarket().exchangeInfo(new LinkedHashMap<>());
+            return objectMapper.readValue(result, ExchangeInfo.class);
+        } catch (Exception e) {
+            log.error("Failed to fetch exchange info", e);
+        }
+
+        return new ExchangeInfo(null, null, null, null);
+    }
+
+    public void test() {
         LinkedHashMap<String, Object> parameters = new LinkedHashMap<String, Object>();
 
         parameters.put("symbol", "BTCUSDT");

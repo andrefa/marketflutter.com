@@ -6,7 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.binance.connector.client.WebsocketClient;
-import com.market.flutter.api.repositories.AssetRepository;
+import com.market.flutter.api.models.api.binance.ExchangeInfo;
+import com.market.flutter.api.services.binance.BinanceClientService;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -20,27 +21,37 @@ public class BinancePricesListener {
 
     private final WebsocketClient binanceWebsocketClient;
 
-    private final AssetRepository assetRepository;
+    // private final AssetRepository assetRepository;
+
+    private final BinanceClientService binanceClientService;
 
     @PostConstruct
     public void init() {
-        List<String> tradedAssets = assetRepository.tradedAssets()
+        // List<String> tradedAssets = assetRepository.tradedAssets()
+        //         .stream()
+        //         .map(ass -> ass + "@trade")
+        //         .toList();
+
+        ExchangeInfo info = binanceClientService.fetchExchangeInfo();
+
+        List<String> tradedAssets = info.symbols()
                 .stream()
-                .map(ass -> ass + "@trade")
+                .map(symbol -> symbol.symbol().toLowerCase())
+                .map(symbol -> symbol + "@trade")
                 .toList();
 
-        log.debug("Connecting to trade streams '{}'.", tradedAssets);
+        log.info("Connecting to trade streams '{}'.", tradedAssets);
         binanceWebsocketClient.combineStreams(new ArrayList<>(tradedAssets), this::onReceive);
     }
 
     @PreDestroy
     public void destroy() {
-        log.debug("Closing all websocket connections.");
+        log.info("Closing all websocket connections.");
         binanceWebsocketClient.closeAllConnections();
     }
 
     private void onReceive(String data) {
-        log.debug("BinancePricesListener.onReceive() {}", data);
+        log.info("BinancePricesListener.onReceive() {}", data);
     }
 
 }
