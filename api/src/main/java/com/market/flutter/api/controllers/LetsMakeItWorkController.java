@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.market.flutter.api.repositories.UserRepository;
 import com.market.flutter.api.services.communications.NotificationService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class LetsMakeItWorkController extends BaseController {
 
     private UserRepository userRepository;

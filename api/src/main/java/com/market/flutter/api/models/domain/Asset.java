@@ -4,6 +4,8 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -17,15 +19,21 @@ import lombok.Setter;
 @Table(name = "assets")
 public class Asset extends BaseEntity {
 
-    @OneToOne(optional = false)
-    private AssetConfig assetConfig;
+
 
     @ManyToOne(optional = false)
     private User user;
 
-    @Column(name = "crypto_name",
+    @OneToOne
+    private Coin coin;
+
+    @OneToOne(optional = false)
+    private AssetConfig assetConfig;
+
+    @Column(name = "trade_strategy",
             nullable = false)
-    private String cryptoName;
+            @Enumerated(EnumType.STRING)
+    private TradeStrategy tradeStrategy;
 
     @OneToMany
     private List<AssetTransaction> assetTransactions;

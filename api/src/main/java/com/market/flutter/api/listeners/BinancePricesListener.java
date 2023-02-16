@@ -11,27 +11,20 @@ import com.market.flutter.api.services.binance.BinanceClientService;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BinancePricesListener {
 
     private final WebsocketClient binanceWebsocketClient;
-
-    // private final AssetRepository assetRepository;
 
     private final BinanceClientService binanceClientService;
 
     @PostConstruct
     public void init() {
-        // List<String> tradedAssets = assetRepository.tradedAssets()
-        //         .stream()
-        //         .map(ass -> ass + "@trade")
-        //         .toList();
-
         ExchangeInfo info = binanceClientService.fetchExchangeInfo();
 
         List<String> tradedAssets = info.symbols()

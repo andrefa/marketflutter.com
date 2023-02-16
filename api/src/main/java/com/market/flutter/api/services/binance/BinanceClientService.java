@@ -9,12 +9,12 @@ import com.binance.connector.client.SpotClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.market.flutter.api.models.api.binance.ExchangeInfo;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BinanceClientService {
 
     private final SpotClient unauthenticatedBinanceClient;

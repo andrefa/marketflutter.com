@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.market.flutter.api.services.binance.BinanceClientService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AssetController extends BaseController {
 
     private BinanceClientService binanceClientService;

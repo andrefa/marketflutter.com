@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,19 +15,22 @@ import lombok.Setter;
 @Table(name = "asset_configs")
 public class AssetConfig extends BaseEntity {
 
+        @OneToOne
+        private Coin coin;
+
     @Column(name = "base_price",
             nullable = false)
     private BigDecimal basePrice;
 
-    @Column(name = "dips_before_buying",
-            nullable = false)
-    private Integer priceDipsBeforeBuying;
-
-    @Column(name = "buying_threshold",
+    @Column(name = "buying_percentage_threshold",
             nullable = false)
     private BigDecimal thresholdForBuying;
 
-    @Column(name = "selling_threshold",
+    @Column(name = "buying_amount",
+    nullable = false)
+private BigDecimal buyingAmount;
+
+    @Column(name = "selling_percentage_threshold",
             nullable = false)
     private BigDecimal thresholdForSelling;
 
@@ -37,5 +41,8 @@ public class AssetConfig extends BaseEntity {
     @Column(name = "enable_sell",
             nullable = false)
     private Boolean enableSell;
+
+        @Column(name = "max_holding_transactions")
+    private Integer maxHoldingTransactions;
 
 }

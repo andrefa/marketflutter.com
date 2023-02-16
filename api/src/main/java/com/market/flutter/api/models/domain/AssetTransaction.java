@@ -24,6 +24,15 @@ public class AssetTransaction extends BaseEntity {
             cascade = {CascadeType.DETACH})
     private Asset asset;
 
+        @OneToOne(optional = false)
+    private Coin coinIn;
+
+    @OneToOne(optional = false)
+        private Coin coinOut;
+
+        @OneToOne(optional = true)
+        private AssetConfig assetConfig;
+        
     @Column(name = "transaction_type",
             nullable = false)
     @Enumerated(EnumType.STRING)
@@ -37,7 +46,6 @@ public class AssetTransaction extends BaseEntity {
             nullable = false)
     private BigDecimal amount;
 
-    @OneToOne(optional = true)
-    private AssetConfig assetConfig;
+
 
 }

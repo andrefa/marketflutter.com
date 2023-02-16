@@ -12,10 +12,7 @@ public class FallbackController {
 
     @RequestMapping("**")
     public ResponseEntity<ApiResponse<Void>> fallback() {
-        return new ResponseEntity<>(ApiResponse.<Void>builder()
-                .success(false)
-                .error("Not Found")
-                .build(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ApiResponse<>(false, "Not Found", null), HttpStatus.NOT_FOUND);
     }
 
 }

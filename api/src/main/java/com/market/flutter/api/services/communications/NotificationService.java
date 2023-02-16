@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.market.flutter.api.models.domain.User;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -21,7 +21,7 @@ import okhttp3.Response;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class NotificationService {
 
     @Value("${notification.url}")
@@ -33,7 +33,7 @@ public class NotificationService {
     private final ObjectMapper objectMapper;
 
     public void notifyUser(User user, String message) {
-        if (user == null || user.getUserConfig() == null || isBlank(user.getUserConfig().getNtfyTopicName()) || isBlank(message)) {
+        if (shouldntNotify(user, message)) {
             return;
         }
 
@@ -59,11 +59,17 @@ public class NotificationService {
                 log.debug("Response received '{}' for url '{}'", ntfyResponse, url);
             }
         } catch (IOException e) {
-            log.debug("Excpetion to notify '{}' message to topic '{}. Error '{}'.",
+            log.warn("Excpetion to notify '{}' message to topic '{}. Error '{}'.",
                     message,
                     user.getUserConfig().getNtfyTopicName(),
                     e.getMessage());
         }
+    }
+
+    private boolean shouldntNotify(User user, String message) {
+        return user == null 
+            || isBlank(user.getUserConfig().getNtfyTopicName())
+            || isBlank(message);
     }
 
 }
