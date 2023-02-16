@@ -11,10 +11,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "coins")
 public class Coin {
-    
+
     @Column(name = "crypto_name")
     private String cryptoName;
-    
+
     @Column(name = "crypto_code")
     private String cryptoCode;
 

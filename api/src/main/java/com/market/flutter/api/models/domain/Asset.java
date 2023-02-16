@@ -32,7 +32,7 @@ public class Asset extends BaseEntity {
 
     @Column(name = "trade_strategy",
             nullable = false)
-            @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private TradeStrategy tradeStrategy;
 
     @Column(name = "default_asset")

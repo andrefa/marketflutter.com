@@ -67,9 +67,9 @@ public class NotificationService {
     }
 
     private boolean shouldntNotify(User user, String message) {
-        return user == null 
-            || isBlank(user.getUserConfig().getNtfyTopicName())
-            || isBlank(message);
+        return user == null
+                || isBlank(user.getUserConfig().getNtfyTopicName())
+                || isBlank(message);
     }
 
 }
