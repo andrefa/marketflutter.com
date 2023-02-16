@@ -1,6 +1,7 @@
 package com.market.flutter.api.services.binance;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.function.BiFunction;
 
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class BinanceClientService {
 
     private final BiFunction<String, String, SpotClient> authenticatedBinanceClientFactory;
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     public ExchangeInfo fetchExchangeInfo() {
         try {
@@ -31,7 +32,7 @@ public class BinanceClientService {
             log.error("Failed to fetch exchange info", e);
         }
 
-        return new ExchangeInfo(null, null, null, null);
+        return new ExchangeInfo(null, null, List.of(), List.of());
     }
 
     public void test() {

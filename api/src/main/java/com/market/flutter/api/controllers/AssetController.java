@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AssetController extends BaseController {
 
-    private BinanceClientService binanceClientService;
+    private final BinanceClientService binanceClientService;
 
     @GetMapping("assets/available")
     public ApiResponse<List<AvailableAsset>> getAllAssets() {

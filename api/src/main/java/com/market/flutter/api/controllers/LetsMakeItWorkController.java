@@ -14,8 +14,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LetsMakeItWorkController extends BaseController {
 
-    private UserRepository userRepository;
-    private NotificationService notificationService;
+    private final UserRepository userRepository;
+    private final NotificationService notificationService;
 
     @GetMapping("test/notify")
     public List<Object> getAllAssets() {

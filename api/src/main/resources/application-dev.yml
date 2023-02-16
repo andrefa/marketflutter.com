@@ -1,5 +1,5 @@
 database:
-  url: jdbc:mysql://localhost:3306/market_flutter?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+  url: jdbc:mysql://localhost:33060/market_flutter?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
   username: root
   password: super-senha
 
@@ -10,4 +10,4 @@ binance:
 
 jwt:
   encryption:
-    key: fdc0266c-6d2a-47f7-ad5f-e1598f3be613
+    key: 64d44e4e27a74796b106ff87dbe4befc99d977dc7f5b433b93673513cf851041cee77bc09fa841bdbcab0ee425915fdecf5fc4e03b9642e2acfdd6f64c894059868caee30d8e40fcaa6ecebe1200837adc63e3ea377a4c748c05314c143a97753f2ab6f20db9447c8b3ee9f16cb7b298edaa6b148d8f490bbbb2c8572c8e37ac491c9ab8ffa348858e2226fe12a91ae728a51b6b0df44117b503abd3036f7c5f822ccabb5f9e4d259ea6a0973dbb8e5e9fb87c00d53c4a99b09eff2635a903318bd2908d1b5c4604b54e9da8a1928a6c45fefb9a2d5a4fcca094ea4007876cab3479ff445cca419b94dd5a0ce802892ecc19a7e11c044337935dc1ea17dcce58

@@ -1,5 +1,6 @@
 package com.market.flutter.api.controllers;
 
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.market.flutter.api.models.dto.ApiResponse;
@@ -8,19 +9,11 @@ import com.market.flutter.api.models.dto.ApiResponse;
 public abstract class BaseController {
 
     protected <T> ApiResponse<T> success(T data) {
-        return ApiResponse
-                .<T>builder()
-                .success(true)
-                .data(data)
-                .build();
+        return new ApiResponse<>(true, null, data);
     }
 
-    protected <Void> ApiResponse<Void> failure(String error) {
-        return ApiResponse
-                .<Void>builder()
-                .success(true)
-                .error(error)
-                .build();
+    protected ApiResponse<Void> failure(String error) {
+        return new ApiResponse<>(false, error, null);
     }
 
 }

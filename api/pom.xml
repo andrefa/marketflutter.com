@@ -31,6 +31,7 @@
 		<okhttp.version>4.10.0</okhttp.version>
 		<sonar.coverage.exclusions>**/com/market/flutter/api/config/**/*</sonar.coverage.exclusions>
 		<spotless-maven-plugin.version>2.13.0</spotless-maven-plugin.version>
+		<jjwt.version>0.11.5</jjwt.version>
 	</properties>
 
 	<dependencies>
@@ -60,7 +61,19 @@
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
-			<version>0.11.5</version>
+			<version>${jjwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Database dependencies -->

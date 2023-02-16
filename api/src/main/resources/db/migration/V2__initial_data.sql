@@ -1,6 +1,6 @@
 insert into users (id, first_name, last_name, email, password)
 values
-(1, 'Andre', 'Almeida', 'almeida.andref@gmail.com', '0542785B-3771-476A-976D-1D7ACDB02E52');
+(1, 'Andre', 'Almeida', 'almeida.andref@gmail.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFO1tRqASuBV7.YporRdBjU3jFwzKwJvbK');
 
 insert into user_configs (user_id, binance_api_key, binance_secret_key, ntfy_topic_name)
 values

@@ -25,7 +25,7 @@ import okhttp3.Response;
 public class NotificationService {
 
     @Value("${notification.url}")
-    private String notificationUrl;
+    private final String notificationUrl;
 
     @Qualifier("ntfyClient")
     private final OkHttpClient okHttp;

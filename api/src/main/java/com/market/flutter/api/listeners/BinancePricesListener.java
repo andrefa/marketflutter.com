@@ -33,7 +33,7 @@ public class BinancePricesListener {
                 .toList();
 
         log.info("Connecting to trade streams '{}'.", tradedAssets);
-        //binanceWebsocketClient.combineStreams(new ArrayList<>(tradedAssets), this::onReceive);
+//        binanceWebsocketClient.combineStreams(new ArrayList<>(tradedAssets), this::onReceive);
     }
 
     @PreDestroy

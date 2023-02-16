@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "coins")
-public class Coin {
+public class Coin extends BaseEntity {
 
     @Column(name = "crypto_name")
     private String cryptoName;
