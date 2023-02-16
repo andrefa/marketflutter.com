@@ -35,6 +35,9 @@ public class Asset extends BaseEntity {
             @Enumerated(EnumType.STRING)
     private TradeStrategy tradeStrategy;
 
+    @Column(name = "default_asset")
+    private Boolean defaultAsset;
+
     @OneToMany
     private List<AssetTransaction> assetTransactions;
 

@@ -13,3 +13,6 @@ spring:
 
 notification:
   url: https://ntfy.sh/
+
+jwt:
+  secret: ${jwt.encryption.key}

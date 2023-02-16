@@ -7,3 +7,7 @@ binance:
   api-key: tbd
   secret-key: tbd
   api-url: https://api.binance.com
+
+jwt:
+  encryption:
+    key: b3e94818-b0f3-403e-af24-51ae76e2c105
