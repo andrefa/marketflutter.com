@@ -1,18 +1,4 @@
 package com.market.flutter.api.models.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class LoginRequest {
-
-    private String user;
-
-    private String password;
-
+public record LoginRequest(String user, String password) {
 }

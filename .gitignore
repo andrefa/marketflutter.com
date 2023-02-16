@@ -77,3 +77,6 @@ logback.out.xml
 
 security/target/
 selenium-debug.log
+
+#js
+node_modules/
