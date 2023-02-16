@@ -1,6 +1,5 @@
 package com.market.flutter.api.controllers;
 
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.market.flutter.api.models.dto.ApiResponse;

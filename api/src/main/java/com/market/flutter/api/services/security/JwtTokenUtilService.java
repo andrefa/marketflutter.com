@@ -43,6 +43,7 @@ public class JwtTokenUtilService {
         return doGenerateToken(Map.of(), userDetails.getUsername());
     }
 
+    // TODO move away from deprecated method
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
@@ -52,6 +53,7 @@ public class JwtTokenUtilService {
         return expiration.before(new Date());
     }
 
+    // TODO move away from deprecated method
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .setClaims(claims)
