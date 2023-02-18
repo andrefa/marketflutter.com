@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -18,8 +19,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "assets")
 public class Asset extends BaseEntity {
-
-
 
     @ManyToOne(optional = false)
     private User user;
@@ -35,10 +34,14 @@ public class Asset extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TradeStrategy tradeStrategy;
 
-    @Column(name = "default_asset")
-    private Boolean defaultAsset;
-
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "asset")
     private List<AssetTransaction> assetTransactions;
+
+    public List<AssetTransaction> getBuyTransactions() {
+        return assetTransactions.stream()
+                .filter(assetTransaction -> assetTransaction.getTransactionType() == TransactionType.BUY)
+                .toList();
+    }
 
 }

@@ -16,11 +16,15 @@ import lombok.Setter;
 public class AssetConfig extends BaseEntity {
 
     @OneToOne
-    private Coin coin;
+    private Coin exchangeCoin;
 
     @Column(name = "base_price",
             nullable = false)
     private BigDecimal basePrice;
+
+    @Column(name = "last_seen_price",
+            nullable = false)
+    private BigDecimal lastSeenPrice;
 
     @Column(name = "buying_percentage_threshold",
             nullable = false)
@@ -34,13 +38,11 @@ public class AssetConfig extends BaseEntity {
             nullable = false)
     private BigDecimal thresholdForSelling;
 
-    @Column(name = "enable_buy",
-            nullable = false)
-    private Boolean enableBuy;
+    @Column(name = "enable_buy")
+    private boolean buyEnabled;
 
-    @Column(name = "enable_sell",
-            nullable = false)
-    private Boolean enableSell;
+    @Column(name = "enable_sell")
+    private boolean sellEnabled;
 
     @Column(name = "max_holding_transactions")
     private Integer maxHoldingTransactions;

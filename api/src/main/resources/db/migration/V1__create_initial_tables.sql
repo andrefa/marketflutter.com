@@ -28,6 +28,7 @@ CREATE TABLE coins
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     crypto_name VARCHAR(255) NOT NULL,
     crypto_code VARCHAR(255) NOT NULL,
+    interest_level varchar(30) NOT NULL DEFAULT 'LOW',
     create_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     update_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY `uk_assets_crypto_code` (`crypto_code`)
@@ -35,17 +36,18 @@ CREATE TABLE coins
 
 CREATE TABLE asset_configs (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    coin_exchange_id BIGINT NOT NULL,
-    base_price DECIMAL(20, 20) NOT NULL,
-    buying_percentage_threshold DECIMAL(4,3) NOT NULL,
-    buying_amount DECIMAL(20, 20) NOT NULL,
-    selling_percentage_threshold DECIMAL(4,3) NOT NULL,
+    exchange_coin_id BIGINT NOT NULL,
+    base_price DECIMAL(64,30) NOT NULL,
+    last_seen_price DECIMAL(64,30) NULL,
+    buying_percentage_threshold DECIMAL(10,5) NOT NULL,
+    buying_amount DECIMAL(64,30) NOT NULL,
+    selling_percentage_threshold DECIMAL(10,5) NOT NULL,
     enable_buy TINYINT NOT NULL DEFAULT 0,
     enable_sell TINYINT NOT NULL DEFAULT 0,
     max_holding_transactions TINYINT NOT NULL DEFAULT 1,
     create_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     update_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (coin_exchange_id) REFERENCES coins(id)
+    FOREIGN KEY (exchange_coin_id) REFERENCES coins(id)
 ) charset = UTF8MB4;
 
 CREATE TABLE assets 
@@ -70,8 +72,9 @@ CREATE TABLE asset_transactions (
     coin_out_id BIGINT NOT NULL,
     asset_config_id BIGINT NULL,
     transaction_type VARCHAR(20) NOT NULL,
-    purchase_price DECIMAL(20, 20) NOT NULL,
-    amount DECIMAL(20, 20) NOT NULL,
+    purchase_price DECIMAL(64, 30) NOT NULL,
+    amount DECIMAL(64,30) NOT NULL,
+    transaction_status VARCHAR(20) NOT NULL,
     create_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     update_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (asset_config_id) REFERENCES asset_configs(id),

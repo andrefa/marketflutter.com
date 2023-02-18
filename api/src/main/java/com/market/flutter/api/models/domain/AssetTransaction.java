@@ -10,13 +10,19 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
 @Getter
 @Setter
 @Entity
 @Table(name = "asset_transactions")
+@AllArgsConstructor
+@NoArgsConstructor
 public class AssetTransaction extends BaseEntity {
 
     @ManyToOne(optional = false,
@@ -46,6 +52,9 @@ public class AssetTransaction extends BaseEntity {
             nullable = false)
     private BigDecimal amount;
 
-
+    @Column(name = "transaction_status",
+            nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TransactionStatus transactionStatus;
 
 }

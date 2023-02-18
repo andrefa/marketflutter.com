@@ -1,5 +1,6 @@
 package com.market.flutter.api.services.binance;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.binance.connector.client.SpotClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.market.flutter.api.models.api.binance.ExchangeInfo;
+import com.market.flutter.api.models.domain.Coin;
+import com.market.flutter.api.models.domain.User;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,20 +38,12 @@ public class BinanceClientService {
         return new ExchangeInfo(null, null, List.of(), List.of());
     }
 
-    public void test() {
-        LinkedHashMap<String, Object> parameters = new LinkedHashMap<String, Object>();
+    public void executeTrade(User user, Coin coinIn, Coin coinOut, BigDecimal amount) {
+        log.info("Trading {} of {} per {} for user {}", amount, coinOut, coinIn, user.getId());
 
-        parameters.put("symbol", "BTCUSDT");
-        parameters.put("side", "SELL");
-        parameters.put("type", "LIMIT");
-        parameters.put("timeInForce", "GTC");
-        parameters.put("quantity", 0.01);
-        parameters.put("price", 9500);
-
-        SpotClient client = authenticatedBinanceClientFactory.apply("oxob8Fwc8Zg83hKw4VremmX4ZC5czDwifjoDicVGtw96OQuuRYRO6hWP57lDn6yP", "hXIu6KRBZOKKHKglsHFjhshlsudEbOLF4P8q9FCO1aTOxqGRni0YV5aXnrvOK8gU");
-        String result2 = client.createTrade().testNewOrder(parameters);
-
-        System.out.println(result2);
+        SpotClient binanceClient = authenticatedBinanceClientFactory.apply(user.getUserConfig().getBinanceApiKey(), user.getUserConfig().getBinanceSecretKey());
+        binanceClient.createTrade().newOrder(new LinkedHashMap<>());
+        // TODO implement the actual trade
     }
 
 }

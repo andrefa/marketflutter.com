@@ -26,6 +26,6 @@ public class UserConfig extends BaseEntity {
     private String ntfyTopicName;
 
     @Column(name = "enable_execute_transactions")
-    private Boolean enableExecuteTransactions;
+    private boolean executeTransactionsEnabled;
 
 }

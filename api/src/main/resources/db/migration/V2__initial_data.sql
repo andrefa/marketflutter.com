@@ -1,7 +1,50 @@
-insert into users (id, first_name, last_name, email, password)
-values
-(1, 'Andre', 'Almeida', 'almeida.andref@gmail.com', '$2a$10$slYQmyNdGzTn7ZLBXBChFO1tRqASuBV7.YporRdBjU3jFwzKwJvbK');
-
-insert into user_configs (user_id, binance_api_key, binance_secret_key, ntfy_topic_name)
-values
-(1, 'oxob8Fwc8Zg83hKw4VremmX4ZC5czDwifjoDicVGtw96OQuuRYRO6hWP57lDn6yP', 'hXIu6KRBZOKKHKglsHFjhshlsudEbOLF4P8q9FCO1aTOxqGRni0YV5aXnrvOK8gU', '0542785B-3771-476A-976D-1D7ACDB02E52');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (1, 'Bitcoin', 'BTC', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (2, 'Ethereum', 'ETH', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (3, 'TetherUS', 'USDT', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (4, 'BNB', 'BNB', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (5, 'Ripple', 'XRP', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (6, 'Cardano', 'ADA', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (7, 'Polygon', 'MATIC', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (8, 'BUSD', 'BUSD', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (9, 'Dogecoin', 'DOGE', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (10, 'Solana', 'SOL', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (11, 'Polkadot', 'DOT', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (12, 'SHIBA INU', 'SHIB', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (13, 'Litecoin', 'LTC', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (14, 'TRON', 'TRX', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (15, 'Avalanche', 'AVAX', 'HOT');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (16, 'Uniswap', 'UNI', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (17, 'Wrapped Bitcoin', 'WBTC', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (18, 'Cosmos', 'ATOM', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (19, 'ChainLink', 'LINK', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (20, 'Ethereum Classic', 'ETC', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (21, 'Filecoin', 'FIL', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (22, 'Monero', 'XMR', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (23, 'Bitcoin Cash', 'BCH', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (24, 'Lido DAO', 'LDO', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (25, 'Aptos', 'APT', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (26, 'Stellar Lumens', 'XLM', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (27, 'Hedera Hashgraph', 'HBAR', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (28, 'Internet Computer', 'ICP', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (29, 'NEAR Protocol', 'NEAR', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (30, 'ApeCoin', 'APE', 'HIGH');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (31, 'VeChain', 'VET', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (32, 'Algorand', 'ALGO', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (33, 'Quant', 'QNT', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (34, 'Fantom', 'FTM', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (35, 'The Graph', 'GRT', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (36, 'Decentraland', 'MANA', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (37, 'Flow', 'FLOW', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (38, 'EOS', 'EOS', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (39, 'MultiversX', 'EGLD', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (40, 'Aave', 'AAVE', 'MEDIUM');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (41, 'Theta Token', 'THETA', 'LOW');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (42, 'Axie Infinity', 'AXS', 'LOW');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (43, 'The Sandbox', 'SAND', 'LOW');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (44, 'Tezos', 'XTZ', 'LOW');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (45, 'Terra Classic', 'LUNC', 'LOW');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (46, 'Rocket Pool', 'RPL', 'LOW');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (47, 'Chiliz', 'CHZ', 'LOW');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (48, 'Mina', 'MINA', 'LOW');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (49, 'Klaytn', 'KLAY', 'LOW');
+INSERT INTO coins (id, crypto_name, crypto_code, interest_level) VALUES (50, 'ImmutableX', 'IMX', 'LOW');

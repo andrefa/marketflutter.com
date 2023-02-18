@@ -16,3 +16,10 @@ notification:
 
 jwt:
   secret: ${jwt.encryption.key}
+
+binance:
+  default:
+    coin: USDT
+  fee:
+    buy: 0.02
+    sell: 0.02
