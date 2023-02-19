@@ -7,13 +7,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.market.flutter.api.models.domain.Asset;
 import com.market.flutter.api.models.domain.AssetConfig;
 import com.market.flutter.api.models.domain.AssetTransaction;
 import com.market.flutter.api.models.domain.TransactionType;
-import com.market.flutter.api.repositories.AssetRepository;
+import com.market.flutter.api.repositories.AssetConfigRepository;
 import com.market.flutter.api.services.communications.NotificationService;
 import com.market.flutter.api.services.trader.actions.ExecuteBuyAction;
 import com.market.flutter.api.services.trader.actions.ExecuteSellAction;
@@ -23,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class DefaultTradeStrategy implements TradeStrategyExecutor {
 
@@ -32,12 +30,12 @@ public class DefaultTradeStrategy implements TradeStrategyExecutor {
 
     private final ExecuteBuyAction executeBuyAction;
     private final ExecuteSellAction executeSellAction;
-    private final AssetRepository assetRepository;
+    private final AssetConfigRepository assetConfigRepository;
     private final NotificationService notificationService;
 
     @Override
     public void execute(Asset asset, BigDecimal newPrice) {
-        log.info("Executing default strategy for asset {} and last seen price {}", asset.getId(), newPrice);
+        log.info("Executing default strategy for asset {} and last seen price {}. Config {}", asset.getId(), newPrice, asset.getAssetConfig());
 
         AssetConfig config = asset.getAssetConfig();
 
@@ -45,7 +43,7 @@ public class DefaultTradeStrategy implements TradeStrategyExecutor {
         processSell(asset, newPrice, config);
 
         config.setLastSeenPrice(newPrice);
-        assetRepository.save(asset);
+        assetConfigRepository.save(config);
     }
 
     private void processBuy(Asset asset, BigDecimal newPrice, AssetConfig config) {

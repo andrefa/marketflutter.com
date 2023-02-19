@@ -6,6 +6,10 @@ spring:
     password: ${database.password}
   jpa:
     open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
   flyway:
     url: ${database.url}
     user: ${database.username}

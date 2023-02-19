@@ -27,11 +27,12 @@
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<mysql-connector.version>8.0.32</mysql-connector.version>
 		<flywaydb.version>9.14.1</flywaydb.version>
-		<binance.version>2.0.0rc1</binance.version>
+		<xchange.binance.version>5.1.0</xchange.binance.version>
 		<okhttp.version>4.10.0</okhttp.version>
 		<sonar.coverage.exclusions>**/com/market/flutter/api/config/**/*</sonar.coverage.exclusions>
 		<spotless-maven-plugin.version>2.13.0</spotless-maven-plugin.version>
 		<jjwt.version>0.11.5</jjwt.version>
+		<javax-ws-rs.version>2.1.1</javax-ws-rs.version>
 	</properties>
 
 	<dependencies>
@@ -96,10 +97,26 @@
 
 		<!-- Binance dependencies -->
 		<dependency>
-			<groupId>io.github.binance</groupId>
-			<artifactId>binance-connector-java</artifactId>
-			<version>${binance.version}</version>
+			<groupId>org.knowm.xchange</groupId>
+			<artifactId>xchange-core</artifactId>
+			<version>${xchange.binance.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.knowm.xchange</groupId>
+			<artifactId>xchange-stream-core</artifactId>
+			<version>${xchange.binance.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.knowm.xchange</groupId>
+			<artifactId>xchange-binance</artifactId>
+			<version>${xchange.binance.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.knowm.xchange</groupId>
+			<artifactId>xchange-stream-binance</artifactId>
+			<version>${xchange.binance.version}</version>
+		</dependency>
+
 
 		<!-- Other dependencies -->
 		<dependency>
@@ -117,6 +134,11 @@
 			<groupId>com.squareup.okhttp3</groupId>
 			<artifactId>okhttp</artifactId>
 			<version>${okhttp.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${javax-ws-rs.version}</version>
 		</dependency>
 
 		<!-- Test dependencies -->

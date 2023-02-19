@@ -1,32 +1,52 @@
 package com.market.flutter.api.config;
 
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.knowm.xchange.Exchange;
+import org.knowm.xchange.ExchangeFactory;
+import org.knowm.xchange.binance.BinanceExchange;
+import org.knowm.xchange.binance.service.BinanceMarketDataService;
+import org.knowm.xchange.service.trade.TradeService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.binance.connector.client.SpotClient;
-import com.binance.connector.client.WebsocketClient;
-import com.binance.connector.client.impl.SpotClientImpl;
-import com.binance.connector.client.impl.WebsocketClientImpl;
+import com.market.flutter.api.models.domain.UserConfig;
+
+import info.bitrich.xchangestream.binance.BinanceStreamingExchange;
+import info.bitrich.xchangestream.core.StreamingExchange;
+import info.bitrich.xchangestream.core.StreamingExchangeFactory;
+
 
 @Configuration
 public class BinanceConfig {
 
     @Bean
-    public SpotClient unauthenticatedBinanceClient(@Value("${binance.url.api}") String apiUrl) {
-        return new SpotClientImpl(apiUrl);
+    @Qualifier("binanceTradeFactory")
+    public Function<UserConfig, TradeService> binanceTradeFactory() {
+        return config -> buildBinanceExchange(config).getTradeService();
     }
 
     @Bean
-    public BiFunction<String, String, SpotClient> authenticatedBinanceClientFactory(@Value("${binance.url.api}") String apiUrl) {
-        return (apiKey, apiSecret) -> new SpotClientImpl(apiKey, apiSecret, apiUrl);
+    @Qualifier("binanceStreamingExchange")
+    public StreamingExchange binanceStreamingExchange() {
+        return StreamingExchangeFactory.INSTANCE.createExchange(BinanceStreamingExchange.class.getName());
     }
 
     @Bean
-    public WebsocketClient binanceWebsocketClient(@Value("${binance.url.websocket}") String apiUrl) {
-        return new WebsocketClientImpl(apiUrl);
+    public BinanceMarketDataService binanceMarketDataService() {
+        return (BinanceMarketDataService) buildBinanceExchange().getMarketDataService();
+    }
+
+    private Exchange buildBinanceExchange(UserConfig userConfig) {
+        Exchange exchange = buildBinanceExchange();
+        exchange.getExchangeSpecification().setApiKey(userConfig.getBinanceApiKey());
+        exchange.getExchangeSpecification().setSecretKey(userConfig.getBinanceSecretKey());
+        return exchange;
+    }
+
+    private BinanceExchange buildBinanceExchange() {
+        return (BinanceExchange) ExchangeFactory.INSTANCE.createExchange(BinanceExchange.class.getName());
     }
 
 }
