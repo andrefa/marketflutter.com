@@ -2,7 +2,7 @@ insert into users (id, first_name, last_name, email, password)
 values (1, 'Andre', 'Almeida', 'almeida.andref@gmail.com', '$2a$10$bSr91wtiesj.vWW5pazMAeo4QMj/PXc5k5SpoZIrBqKFDfta6JH1O');
 
 insert into user_configs (user_id, binance_api_key, binance_secret_key, ntfy_topic_name, enable_execute_transactions)
-values (1, 'oxob8Fwc8Zg83hKw4VremmX4ZC5czDwifjoDicVGtw96OQuuRYRO6hWP57lDn6yP', 'hXIu6KRBZOKKHKglsHFjhshlsudEbOLF4P8q9FCO1aTOxqGRni0YV5aXnrvOK8gU', '0542785B-3771-476A-976D-1D7ACDB02E52', 1);
+values (1, 'e9kpXVa0r5xLkegzdmru8ukcwqPHOVr1eauLmp70WVfwTF9zmBL1SNzv1VldwpXJ', 'bjba3SIUDS4AxVUaxuAh3VCaq5liHAVpLL8wJxnw18VXa0oEzuEVg4joUbcit65B', '0542785B-3771-476A-976D-1D7ACDB02E52', 1);
 
 insert into asset_configs (id, exchange_coin_id, base_price, buying_percentage_threshold, buying_amount, selling_percentage_threshold, enable_buy, enable_sell, max_holding_transactions)
 values (1, 3, 25000.0, 0.05, 0.001, 0.06, 1, 1, 3);

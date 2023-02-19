@@ -4,10 +4,13 @@ database:
   password: 60C9831D-0CC9-46D1-AE8B-BE648ACF7F2D
 
 binance:
-  api-key: tbd
-  secret-key: tbd
-  api-url: https://api.binance.com
+  enable:
+    test-mode: false
 
 jwt:
   encryption:
     key: 1bee7368882045499a4f5a63eb7e32471702a6a328a546aaacf755b9cf0cda3436aacabc1e3644af889722f4b27a324b6430754037e34e49bb4dcab318009f5ab73f2001710c4b57b8004f648b3dd05c4377e85a9e614b0da6aeb4b1262ade1d31189df0d86a4f7eacf165f778743b017173dcd0e5d644c2af99ee2846a7832056c064f7bcc64a10af9c4902d4ce1509d7a8f2bfac27455b897ab6b899c224a751c5980868a54b9890e8f9181b3222f0cda74c775d6945caa99253c97c035cf23063a851fe1d4a9caed4026bef11ce01b0c78298f1124444821d9df36d66858b9e7d2fbd68324939a4497910877347c2618de9c5807c408aa33d3ed82d847474
+
+xchange:
+  streaming:
+    server-uri: wss://stream.binance.com:9443/ws

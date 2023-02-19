@@ -28,8 +28,8 @@ public class BinanceClientService {
 
     public void executeTrade(User user, Coin coinIn, Coin coinOut, BigDecimal amount) {
         try {
-            CurrencyPair currencyPair = new CurrencyPair(String.format("%s%s", coinIn.getCryptoCode(), coinOut.getCryptoCode()));
-            MarketOrder marketOrder = new MarketOrder(Order.OrderType.BID, amount, currencyPair);
+            CurrencyPair currencyPair = new CurrencyPair(coinIn.getCryptoCode(), coinOut.getCryptoCode());
+            MarketOrder marketOrder = new MarketOrder(Order.OrderType.BID, amount.stripTrailingZeros(), currencyPair);
 
             String orderId = binanceTradeFactory.apply(user.getUserConfig())
                     .placeMarketOrder(marketOrder);
