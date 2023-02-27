@@ -1,11 +1,13 @@
 package com.market.flutter.api.services;
 
+import org.springframework.stereotype.Service;
+
 import com.market.flutter.api.models.domain.User;
 import com.market.flutter.api.models.domain.UserConfig;
 import com.market.flutter.api.repositories.UserConfigRepository;
 import com.market.flutter.api.repositories.UserRepository;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

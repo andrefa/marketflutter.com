@@ -1,13 +1,15 @@
 package com.market.flutter.api.controllers;
 
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.market.flutter.api.models.dto.ApiResponse;
 import com.market.flutter.api.models.dto.UpdateBinanceConfigRequest;
 import com.market.flutter.api.models.dto.UpdateNotificationTopicRequest;
 import com.market.flutter.api.services.UserConfigService;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
