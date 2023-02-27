@@ -20,13 +20,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {Exception.class})
     @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
-    protected ApiResponse<ErrorResponse> formatErrorResponse(Exception ex, WebRequest request) {
+    protected ApiResponse<StackTraceElement[]> formatErrorResponse(Exception ex, WebRequest request) {
         log.error("Error while processing request [" + request + "].", ex);
-        return new ApiResponse<>(false, ex.getLocalizedMessage(), new ErrorResponse(ex.getStackTrace()));
+        return new ApiResponse<>(false, ex.getLocalizedMessage(), ex.getStackTrace());
     }
 
-}
-
-
-record ErrorResponse(StackTraceElement[] stackTrace) {
 }

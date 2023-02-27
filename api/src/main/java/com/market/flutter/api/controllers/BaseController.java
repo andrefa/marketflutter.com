@@ -9,6 +9,10 @@ import com.market.flutter.api.models.dto.ApiResponse;
 @RequestMapping("/api/v1")
 public abstract class BaseController {
 
+    protected ApiResponse<Void> success() {
+        return new ApiResponse<>(true, null, null);
+    }
+
     protected <T> ApiResponse<T> success(T data) {
         return new ApiResponse<>(true, null, data);
     }
