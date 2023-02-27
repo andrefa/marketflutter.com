@@ -36,6 +36,4 @@ public class ExecuteSellAction extends ExecuteTransactionAction {
         return transactCoins(asset, coinIn, coinOut, amount, price);
     }
 
-
-
 }

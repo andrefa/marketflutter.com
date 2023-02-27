@@ -20,7 +20,6 @@ import info.bitrich.xchangestream.core.StreamingExchange;
 import info.bitrich.xchangestream.core.StreamingExchangeFactory;
 import lombok.RequiredArgsConstructor;
 
-
 @Configuration
 @RequiredArgsConstructor
 public class BinanceConfig {

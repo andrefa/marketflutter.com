@@ -36,8 +36,8 @@ public class AuthenticationController extends BaseController {
         return success(new LoginResponse(token));
     }
 
-    @PostMapping("auth/test")
-    public ApiResponse<LoginResponse> test(@RequestBody LoginRequest loginRequest) throws Exception {
+    @PostMapping("auth/encode_password")
+    public ApiResponse<LoginResponse> encodePassword(@RequestBody LoginRequest loginRequest) {
         return success(new LoginResponse(passwordEncoder.encode(loginRequest.password())));
     }
 

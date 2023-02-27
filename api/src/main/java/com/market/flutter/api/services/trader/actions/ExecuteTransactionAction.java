@@ -21,8 +21,10 @@ public abstract class ExecuteTransactionAction {
     protected final AssetTransactionRepository assetTransactionRepository;
 
     protected Optional<AssetTransaction> transactCoins(Asset asset, Coin coinIn, Coin coinOut, BigDecimal amount, BigDecimal price) {
+        TransactionStatus transactionStatus = TransactionStatus.PENDING;
         if (asset.getUser().getUserConfig().isExecuteTransactionsEnabled()) {
             binanceClientService.executeTrade(asset.getUser(), coinIn, coinOut, amount);
+            transactionStatus = TransactionStatus.EMULATED;
         }
 
         AssetTransaction assetTransaction = AssetTransaction.builder()
@@ -32,7 +34,7 @@ public abstract class ExecuteTransactionAction {
                 .transactionType(TransactionType.BUY)
                 .amount(amount)
                 .purchasePrice(price)
-                .transactionStatus(TransactionStatus.CREATED)
+                .transactionStatus(transactionStatus)
                 .build();
         assetTransactionRepository.save(assetTransaction);
 

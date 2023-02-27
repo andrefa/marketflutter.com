@@ -1,5 +1,7 @@
 package com.market.flutter.api.models.domain;
 
 public enum TransactionStatus {
-    CREATED, EXECUTED, CANCELED, FAILED
+
+    EMULATED, PENDING, EXECUTED, CANCELED, FAILED
+
 }

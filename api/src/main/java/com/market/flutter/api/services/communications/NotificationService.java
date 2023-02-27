@@ -33,7 +33,7 @@ public class NotificationService {
     private final ObjectMapper objectMapper;
 
     public void notifyUser(User user, String message) {
-        if (shouldntNotify(user, message)) {
+        if (shouldNotNotify(user, message)) {
             return;
         }
 
@@ -59,14 +59,14 @@ public class NotificationService {
                 log.debug("Response received '{}' for url '{}'", ntfyResponse, url);
             }
         } catch (IOException e) {
-            log.warn("Excpetion to notify '{}' message to topic '{}. Error '{}'.",
+            log.warn("Exception to notify '{}' message to topic '{}. Error '{}'.",
                     message,
                     user.getUserConfig().getNtfyTopicName(),
                     e.getMessage());
         }
     }
 
-    private boolean shouldntNotify(User user, String message) {
+    private boolean shouldNotNotify(User user, String message) {
         return user == null
                 || isBlank(user.getUserConfig().getNtfyTopicName())
                 || isBlank(message);

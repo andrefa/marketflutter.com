@@ -14,3 +14,9 @@ jwt:
 xchange:
   streaming:
     server-uri: wss://stream.binance.com:9443/ws
+
+spring:
+  flyway:
+    locations:
+      - classpath:db/migration/common
+      - classpath:db/migration/prod

@@ -13,5 +13,4 @@ public class UserController extends BaseController {
         return Map.of("user", Map.of("name", "John Doe", "email", "email@domain.com"));
     }
 
-
 }
