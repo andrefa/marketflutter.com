@@ -6,9 +6,6 @@ import java.util.List;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.marketdata.Ticker;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.market.flutter.api.models.domain.Asset;
@@ -21,7 +18,6 @@ import info.bitrich.xchangestream.core.ProductSubscription.ProductSubscriptionBu
 import info.bitrich.xchangestream.core.StreamingExchange;
 import info.bitrich.xchangestream.core.StreamingMarketDataService;
 import io.reactivex.disposables.Disposable;
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,11 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-@Order(Ordered.LOWEST_PRECEDENCE)
 public class BinancePricesListener {
-
-    @Value("${binance.default.coin}")
-    private final String defaultTradedCoin;
 
     @Qualifier("binanceStreamingExchange")
     private final StreamingExchange streamingExchange;
@@ -42,8 +34,7 @@ public class BinancePricesListener {
 
     private List<Disposable> websocketConnections;
 
-    @PostConstruct
-    public void init() {
+    public void start() {
         List<Asset> assets = assetRepository.findAll();
 
         ProductSubscriptionBuilder subscriptionBuilder = ProductSubscription.create();
@@ -68,9 +59,11 @@ public class BinancePricesListener {
     }
 
     @PreDestroy
-    public void destroy() {
-        log.info("Closing all websocket connections.");
-        websocketConnections.forEach(Disposable::dispose);
+    public void stop() {
+        if (websocketConnections != null && !websocketConnections.isEmpty()) {
+            log.info("Closing all websocket connections.");
+            websocketConnections.forEach(Disposable::dispose);
+        }
     }
 
     private void onReceive(Coin coin, Ticker ticker) {

@@ -17,8 +17,8 @@ public abstract class BaseController {
         return new ApiResponse<>(true, null, data);
     }
 
-    protected ApiResponse<Void> failure(String error) {
-        return new ApiResponse<>(false, error, null);
+    protected ApiResponse<Void> failure(String message, String args) {
+        return new ApiResponse<>(false, String.format(message, args), null);
     }
 
     protected String getLoggedInUserName() {

@@ -3,6 +3,7 @@ package com.market.flutter.api.controllers;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.market.flutter.api.models.dto.ApiResponse;
@@ -22,6 +23,12 @@ public class AssetController extends BaseController {
     @GetMapping("assets/available")
     public ApiResponse<List<UserAsset>> listUserAssets() {
         return success(assetService.listAssetsPerUser(getLoggedInUserName()));
+    }
+
+    @PutMapping("assets/reset-base-price")
+    public ApiResponse<Void> resetUserAssetsBasePrice() {
+        assetService.resetUserAssetsBasePrice(getLoggedInUserName());
+        return success();
     }
 
 }

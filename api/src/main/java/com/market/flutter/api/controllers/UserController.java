@@ -1,16 +1,19 @@
 package com.market.flutter.api.controllers;
 
-import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.market.flutter.api.models.dto.ApiResponse;
+import com.market.flutter.api.models.dto.UserData;
+
 @RestController
 public class UserController extends BaseController {
 
-    @GetMapping("not-the-user/me")
-    public Object getAllAssets() {
-        return Map.of("user", Map.of("name", "John Doe", "email", "email@domain.com"));
+    @GetMapping("user/me")
+    public ApiResponse<UserData> getAllAssets() {
+        // TODO implement
+        return success(new UserData("John", "Doe", getLoggedInUserName(), null));
     }
 
 }

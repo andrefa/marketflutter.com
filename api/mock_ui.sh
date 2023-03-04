@@ -6,19 +6,23 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+env_url=http://localhost:8080
+#env_url=http://market-flutter-prod.us-east-1.elasticbeanstalk.com
+token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbG1laWRhLmFuZHJlZkBnbWFpbC5jb20iLCJpYXQiOjE2Nzc5Njc2NjIsImV4cCI6MTY3Nzk4NTY2Mn0.cC5OmZPDSyDtumCRBOhWJNg7I_WB5yeHDEVHKdo3jIK1K0jo5tEkd65U-voTYoEW00R0B408mXxkL6mmcefPUw
+
 login ()
 {
   curl -X POST \
     -H "Content-Type: application/json" \
     -d '{"user": "almeida.andref@gmail.com", "password": "f1a4821f-b53e-42a8-a1dc-451ace9f6e5b"}' \
-    http://localhost:8080/api/v1/auth/login
+   "$env_url/api/v1/auth/login"
 }
 
 list_user_assets ()
 {
   curl \
-    -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbG1laWRhLmFuZHJlZkBnbWFpbC5jb20iLCJpYXQiOjE2Nzc0NTAyNjksImV4cCI6MTY3NzQ2ODI2OX0.oFXiMRYRwCjMkGN7VoGMTlUo_eB5at5EmDECBLOjwG3HwvTlO_-YJBkZxhZRCU1NL5QQ9OT8AxmTDEW7S7cO4g" \
-    http://localhost:8080/api/v1/assets/available
+    -H "Authorization: Bearer $token" \
+    "$env_url/api/v1/assets/available"
   #
 }
 
@@ -28,9 +32,36 @@ gen_password ()
   echo "${generated_password}"
   curl -X POST \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbG1laWRhLmFuZHJlZkBnbWFpbC5jb20iLCJpYXQiOjE2Nzc0NTAyNjksImV4cCI6MTY3NzQ2ODI2OX0.oFXiMRYRwCjMkGN7VoGMTlUo_eB5at5EmDECBLOjwG3HwvTlO_-YJBkZxhZRCU1NL5QQ9OT8AxmTDEW7S7cO4g" \
+    -H "Authorization: Bearer $token" \
     -d " { \"user\": \"almeida.andref@gmail.com\", \"password\": \"${generated_password}\" } " \
-    http://localhost:8080/api/v1/auth/encode_password
+    "$env_url/api/v1/auth/encode_password"
+}
+
+start_jobs ()
+{
+  curl -X PUT \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $token" \
+    -d "{}" \
+    "$env_url/api/v1/jobs/binance-prices-listener/start"
+}
+
+stop_jobs ()
+{
+    curl -X PUT \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $token" \
+      -d "{}" \
+      "$env_url/api/v1/jobs/binance-prices-listener/stop"
+}
+
+reset_price ()
+{
+      curl -X PUT \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer $token" \
+        -d "{}" \
+        "$env_url/api/v1/assets/reset-base-price"
 }
 
 "$1"
