@@ -22,7 +22,7 @@ public class SecurityConfig {
         http.csrf().disable()
                 // dont authenticate this particular request
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/login")
+                .requestMatchers("/api/v1/auth/login", "/api/v1/healthcheck")
                 .permitAll()
                 // all other requests need to be authenticated
                 .anyRequest()

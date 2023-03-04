@@ -6,8 +6,8 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-env_url=http://localhost:8080
-#env_url=http://market-flutter-prod.us-east-1.elasticbeanstalk.com
+#env_url=http://localhost:8080
+env_url=http://market-flutter-prod.us-east-1.elasticbeanstalk.com
 token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbG1laWRhLmFuZHJlZkBnbWFpbC5jb20iLCJpYXQiOjE2Nzc5Njc2NjIsImV4cCI6MTY3Nzk4NTY2Mn0.cC5OmZPDSyDtumCRBOhWJNg7I_WB5yeHDEVHKdo3jIK1K0jo5tEkd65U-voTYoEW00R0B408mXxkL6mmcefPUw
 
 login ()
@@ -62,6 +62,11 @@ reset_price ()
         -H "Authorization: Bearer $token" \
         -d "{}" \
         "$env_url/api/v1/assets/reset-base-price"
+}
+
+check ()
+{
+  curl "$env_url/api/v1/healthcheck"
 }
 
 "$1"

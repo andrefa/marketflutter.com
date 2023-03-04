@@ -20,3 +20,6 @@ global:
   repository: null
   sc: null
   workspace_type: Application
+
+aws:elasticbeanstalk:environment:
+  HealthCheckUrl: HTTP:5000/api/v1/healthcheck
