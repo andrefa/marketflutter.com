@@ -6,9 +6,9 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-#env_url=http://localhost:8080
-env_url=http://market-flutter-prod.us-east-1.elasticbeanstalk.com
-token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbG1laWRhLmFuZHJlZkBnbWFpbC5jb20iLCJpYXQiOjE2Nzc5Njc2NjIsImV4cCI6MTY3Nzk4NTY2Mn0.cC5OmZPDSyDtumCRBOhWJNg7I_WB5yeHDEVHKdo3jIK1K0jo5tEkd65U-voTYoEW00R0B408mXxkL6mmcefPUw
+env_url=http://localhost:8080
+#env_url=http://market-flutter-prod.ca-central-1.elasticbeanstalk.com
+token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbG1laWRhLmFuZHJlZkBnbWFpbC5jb20iLCJpYXQiOjE2NzgwNDYxNjEsImV4cCI6MTY3ODA2NDE2MX0.16_dAVZVhicHQez0rkP6_JQglA9sfjTBHgb4QFDm6WbqHnDc6ulqjmgEVrxVhsWz8rBLfxKKCq8qGheTTWjmnQ
 
 login ()
 {
@@ -67,6 +67,20 @@ reset_price ()
 check ()
 {
   curl "$env_url/api/v1/healthcheck"
+}
+
+me ()
+{
+  curl \
+    -H "Authorization: Bearer $token" \
+    "$env_url/api/v1/user/me"
+}
+
+x ()
+{
+  curl -I \
+    -H "Authorization: Bearer $token" \
+    "$env_url/x"
 }
 
 "$1"

@@ -1,17 +1,15 @@
 branch-defaults:
   default:
     environment: market-flutter-prod
-  main:
-    environment: null
     group_suffix: null
 deploy:
   artifact: target/api-0.0.1.jar
 global:
-  application_name: market-flutter
+  application_name: market_flutter
   branch: null
   default_ec2_keyname: aws-eb-market-flutter
   default_platform: Corretto 17 running on 64bit Amazon Linux 2
-  default_region: us-east-1
+  default_region: ca-central-1
   include_git_submodules: true
   instance_profile: null
   platform_name: null
@@ -20,6 +18,3 @@ global:
   repository: null
   sc: null
   workspace_type: Application
-
-aws:elasticbeanstalk:environment:
-  HealthCheckUrl: HTTP:5000/api/v1/healthcheck
