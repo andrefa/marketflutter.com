@@ -57,4 +57,7 @@ public class AssetTransaction extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TransactionStatus transactionStatus;
 
+    @Column
+    private boolean sold;
+
 }

@@ -102,7 +102,7 @@ public class DefaultTradeStrategy implements TradeStrategyExecutor {
         BigDecimal purchasePrice = buyTransaction.getPurchasePrice();
 
         // If newPrice is above or equals the sell threshold and the new price is below the last seen price, sell
-        return newPrice.compareTo(purchasePrice.multiply(BigDecimal.ONE.add(sellThreshold))) >= 0
+        return !buyTransaction.isSold() && newPrice.compareTo(purchasePrice.multiply(BigDecimal.ONE.add(sellThreshold))) >= 0
                 && (lastSeenPrice == null || newPrice.compareTo(lastSeenPrice) < 0);
     }
 

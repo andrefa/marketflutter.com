@@ -32,6 +32,9 @@ public class ExecuteSellAction extends ExecuteTransactionAction {
         Coin coinOut = asset.getCoin();
         BigDecimal amount = buyTransaction.getAmount();
 
+        buyTransaction.setSold(true);
+        assetTransactionRepository.save(buyTransaction);
+
         log.info("Selling {} of {} for user {}", amount, coinOut, asset.getUser().getId());
         return transactCoins(asset, coinIn, coinOut, amount, price);
     }
